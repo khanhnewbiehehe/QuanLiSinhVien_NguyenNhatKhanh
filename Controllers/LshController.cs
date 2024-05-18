@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using QuanLiSinhVien.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 namespace QuanLiSinhVien.Controllers
 {
     public class LshController : Controller
@@ -31,10 +32,13 @@ namespace QuanLiSinhVien.Controllers
         // POST: LshController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Lsh model)
         {
             try
             {
+                var context = new QlsinhvienContext();
+                context.Lshes.Add(model);
+                context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
