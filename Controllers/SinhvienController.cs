@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using QuanLiSinhVien.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace QuanLiSinhVien.Controllers
 {
@@ -25,10 +26,12 @@ namespace QuanLiSinhVien.Controllers
         // GET: SinhVienController/Create
         public ActionResult Create()
         {
-            var context = new QlsinhvienContext(); 
+            var context = new QlsinhvienContext();
+            var maLshSelect = new SelectList(context.Lshes.ToList(),"MaLsh", "MaLsh");
             var maxMaSv = context.Sinhviens.Max(sv => sv.MaSv);
             var nextMaSv = "SV" + (int.Parse(maxMaSv.Substring(2)) + 1).ToString("D8");
             ViewBag.NextMaSv = nextMaSv;
+            ViewBag.MaLsh = maLshSelect;
             return View();
         }
 
@@ -59,10 +62,22 @@ namespace QuanLiSinhVien.Controllers
         // POST: SinhVienController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Sinhvien model)
         {
             try
             {
+                var context = new QlsinhvienContext();
+                var sinhvientoupdate = context.Sinhviens.Find(model.MaSv);
+                if (sinhvientoupdate != null)
+                {
+                    return NotFound();
+                }
+                sinhvientoupdate.TenSv = model.TenSv;
+                sinhvientoupdate.Ngaysinh = model.Ngaysinh;
+                sinhvientoupdate.Cccd = model.Cccd;
+                sinhvientoupdate.Sdt = model.Sdt;
+                sinhvientoupdate.Email = model.Email;
+                sinhvientoupdate.MaLsh = model.MaLsh;
                 return RedirectToAction(nameof(Index));
             }
             catch
