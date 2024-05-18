@@ -1,0 +1,28 @@
+﻿@model IEnumerable<QuanLiSinhVien.Models.Giangvien>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p class="session_title">DANH SÁCH GIẢNG VIÊN</p>
+<div class="session_header">
+    <button><a asp-action="Create">Thêm</a></button>
+    <button><a asp-action="Edit">Sửa</a></button>
+    <button><a asp-action="Delete">Xóa</a></button>
+</div>
+<div class="list_card">
+    @foreach (var item in Model)
+    {
+        <div class="card_GV">
+            <img src="~/img/human.jpg">
+            <p class="">Mã GV:@Html.DisplayFor(modelItem => item.MaGv)</p>
+            <p class="">Họ và tên:@Html.DisplayFor(modelItem => item.TenGv)</p>
+            <p class="">Ngày sinh: @item.Ngaysinh.ToString("dd/MM/yyyy")</p>
+            <p class="">CCCD: @Html.DisplayFor(modelItem => item.Cccd)</p>
+            <p class="">SDT: @Html.DisplayFor(modelItem => item.Sdt)</p>
+            <p class="">Email: @Html.DisplayFor(modelItem => item.Email)</p>
+            <p class="">Học vị: @Html.DisplayFor(modelItem => item.Hocvi)</p>
+            <p class="">Khoa: @Html.DisplayFor(modelItem => item.MaKhoaNavigation.TenKhoa)</p>
+        </div>
+    }  
+</div>
