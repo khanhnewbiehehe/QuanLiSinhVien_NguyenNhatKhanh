@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QuanLiSinhVien.Models;
-
+using Microsoft.EntityFrameworkCore;
 namespace QuanLiSinhVien.Controllers
 {
     public class LshController : Controller
@@ -9,7 +9,10 @@ namespace QuanLiSinhVien.Controllers
         // GET: LshController
         public ActionResult Index()
         {
-            var listLsh = new QlsinhvienContext().Lshes.ToList();
+            var listLsh = new QlsinhvienContext()
+                     .Lshes
+                     .Include(lsh => lsh.MaGvNavigation)
+                     .ToList();
             return View(listLsh);
         }
 

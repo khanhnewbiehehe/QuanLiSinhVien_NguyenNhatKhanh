@@ -4,44 +4,21 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.MaLsh)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MaGv)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Siso)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaLsh)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaGv)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Siso)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<p class="session_title">DANH SÁCH KHOA</p>
+<div class="session_header">
+    <button><a asp-action="Create">Thêm</a></button>
+    <button><a asp-action="Edit">Sửa</a></button>
+    <button><a asp-action="Create">Xóa</a></button>
+</div>
+<div class="list_card">
+    @foreach (var item in Model)
+    {
+        <div class="card_LSH">
+            <img src="img/khoa.jpg">
+            <p class="card_title">@Html.DisplayFor(modelItem => item.MaLsh)</p>
+            <p>GVCN: @Html.DisplayFor(modelItem => item.MaGvNavigation.TenGv)</p>
+            <p>Sĩ số: @Html.DisplayFor(modelItem => item.Siso)</p>
+            <button><a href="#">Xem chi tiết</a></button>
+        </div>
+    }
+</div>

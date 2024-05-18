@@ -61,9 +61,9 @@ button {
     padding: 20px;
 }
 
-.card_GV, .card_LHP {
-    height: 590px;
-    width: 300px;
+.card_LSH {
+    height: 380px;
+    width: 250px;
     overflow: hidden;
     box-shadow: 7px 9px 21px 3px #888888;
     border: none;
@@ -72,11 +72,23 @@ button {
     padding: 20px;
 }
 
-    .card_GV p, .card_LHP p {
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 15px;
-        margin 0:
+
+    .card_GV, .card_LHP {
+        height: 590px;
+        width: 300px;
+        overflow: hidden;
+        box-shadow: 7px 9px 21px 3px #888888;
+        border: none;
+        border-radius: 20px;
+        margin: 30px;
+        padding: 20px;
     }
+
+        .card_GV p, .card_LHP p, .card_LSH p {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 15px;
+            margin 0:
+        }
 
 
 .list_card img {
@@ -92,7 +104,7 @@ button {
     margin: 20px 0;
 }
 
-.card button {
+.card button, .card_LSH button{
     margin: 20px 20px 20px 30px;
     width: 70%;
 }
