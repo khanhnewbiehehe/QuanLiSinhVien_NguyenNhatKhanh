@@ -85,10 +85,19 @@ namespace QuanLiSinhVien.Controllers
         // POST: LshController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(Lsh model)
         {
             try
             {
+                var context = new QlsinhvienContext();
+                var LshToDelete = context.Lshes.Find(model.MaLsh);
+
+                if (LshToDelete == null)
+                {
+                    return NotFound();
+                }
+                context.Lshes.Remove(LshToDelete);
+                context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch

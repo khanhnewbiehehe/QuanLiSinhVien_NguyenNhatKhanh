@@ -4,11 +4,11 @@
     ViewData["Title"] = "Index";
 }
 
-<p class="session_title">DANH SÁCH KHOA</p>
+<p class="session_title">DANH SÁCH LỚP SINH HOẠT</p>
 <div class="session_header">
     <button><a asp-action="Create">Thêm</a></button>
     <button><a asp-action="Edit">Sửa</a></button>
-    <button><a asp-action="Create">Xóa</a></button>
+    <button><a asp-action="Delete">Xóa</a></button>
 </div>
 <div class="list_card">
     @foreach (var item in Model)
