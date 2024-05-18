@@ -25,16 +25,23 @@ namespace QuanLiSinhVien.Controllers
         // GET: SinhVienController/Create
         public ActionResult Create()
         {
+            var context = new QlsinhvienContext(); 
+            var maxMaSv = context.Sinhviens.Max(sv => sv.MaSv);
+            var nextMaSv = "SV" + (int.Parse(maxMaSv.Substring(2)) + 1).ToString("D8");
+            ViewBag.NextMaSv = nextMaSv;
             return View();
         }
 
         // POST: SinhVienController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Sinhvien model)
         {
             try
             {
+                var context = new QlsinhvienContext();
+                context.Sinhviens.Add(model);
+                context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
