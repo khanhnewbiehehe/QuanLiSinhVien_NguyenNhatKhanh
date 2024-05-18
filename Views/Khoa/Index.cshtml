@@ -1,0 +1,22 @@
+﻿@model IEnumerable<QuanLiSinhVien.Models.Khoa>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p class="session_title">DANH SÁCH KHOA</p>
+<div class="session_header">
+    <button><a asp-action="Create">Thêm</a></button>
+    <button><a asp-action="Edit">Sửa</a></button>
+    <button><a asp-action="Delete">Xóa</a></button>
+</div>
+<div class="list_card">
+    @foreach (var item in Model)
+    {
+        <div class="card">
+            <img src="~/img/khoa.jpg">
+            <p class="card_title">@Html.DisplayFor(modelItem => item.TenKhoa)</p>
+            <button>@Html.ActionLink("Xem chi tiết", "Details", new { /* id=item.PrimaryKey */ })</button>
+        </div>
+    }
+</div>

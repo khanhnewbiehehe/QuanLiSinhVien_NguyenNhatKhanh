@@ -142,3 +142,4 @@ C:\Users\DELL\source\repos\QuanLiSinhVien\QuanLiSinhVien\obj\Debug\net8.0\refint
 C:\Users\DELL\source\repos\QuanLiSinhVien\QuanLiSinhVien\obj\Debug\net8.0\QuanLiSinhVien.pdb
 C:\Users\DELL\source\repos\QuanLiSinhVien\QuanLiSinhVien\obj\Debug\net8.0\QuanLiSinhVien.genruntimeconfig.cache
 C:\Users\DELL\source\repos\QuanLiSinhVien\QuanLiSinhVien\obj\Debug\net8.0\ref\QuanLiSinhVien.dll
+C:\Users\DELL\source\repos\QuanLiSinhVien\QuanLiSinhVien\obj\Debug\net8.0\QuanLiSinhVien.sourcelink.json

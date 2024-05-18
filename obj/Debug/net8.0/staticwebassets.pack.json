@@ -13,6 +13,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\DELL\\source\\repos\\QuanLiSinhVien\\QuanLiSinhVien\\wwwroot\\img\\human.jpg",
+      "PackagePath": "staticwebassets\\img\\human.jpg"
+    },
+    {
+      "Id": "C:\\Users\\DELL\\source\\repos\\QuanLiSinhVien\\QuanLiSinhVien\\wwwroot\\img\\khoa.jpg",
+      "PackagePath": "staticwebassets\\img\\khoa.jpg"
+    },
+    {
       "Id": "C:\\Users\\DELL\\source\\repos\\QuanLiSinhVien\\QuanLiSinhVien\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
