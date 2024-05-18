@@ -56,10 +56,18 @@ namespace QuanLiSinhVien.Controllers
         // POST: LshController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Lsh model)
         {
             try
             {
+                var context = new QlsinhvienContext();
+                var LshToUpdate = context.Lshes.Find(model.MaLsh);
+                if (LshToUpdate == null)
+                {
+                    return NotFound();
+                }
+                LshToUpdate.MaGv = model.MaGv;
+                context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
