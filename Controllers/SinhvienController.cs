@@ -54,8 +54,12 @@ namespace QuanLiSinhVien.Controllers
         }
 
         // GET: SinhVienController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit()
+
         {
+            var context = new QlsinhvienContext();
+            var maLshSelect = new SelectList(context.Lshes.ToList(), "MaLsh", "MaLsh");
+            ViewBag.MaLsh = maLshSelect;
             return View();
         }
 
@@ -67,17 +71,18 @@ namespace QuanLiSinhVien.Controllers
             try
             {
                 var context = new QlsinhvienContext();
-                var sinhvientoupdate = context.Sinhviens.Find(model.MaSv);
-                if (sinhvientoupdate != null)
+                var sinhvienToUpdate = context.Sinhviens.Find(model.MaSv);
+                if (sinhvienToUpdate == null)
                 {
                     return NotFound();
                 }
-                sinhvientoupdate.TenSv = model.TenSv;
-                sinhvientoupdate.Ngaysinh = model.Ngaysinh;
-                sinhvientoupdate.Cccd = model.Cccd;
-                sinhvientoupdate.Sdt = model.Sdt;
-                sinhvientoupdate.Email = model.Email;
-                sinhvientoupdate.MaLsh = model.MaLsh;
+                sinhvienToUpdate.TenSv = model.TenSv;
+                sinhvienToUpdate.Ngaysinh = model.Ngaysinh;
+                sinhvienToUpdate.Cccd = model.Cccd;
+                sinhvienToUpdate.Sdt = model.Sdt;
+                sinhvienToUpdate.Email = model.Email;
+                sinhvienToUpdate.MaLsh = model.MaLsh;
+                context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -88,7 +93,9 @@ namespace QuanLiSinhVien.Controllers
 
         // GET: SinhVienController/Delete/5
         public ActionResult Delete(int id)
+
         {
+            
             return View();
         }
 
