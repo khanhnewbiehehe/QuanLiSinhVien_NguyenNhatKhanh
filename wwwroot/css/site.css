@@ -1,22 +1,115 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+}
+
+button {
+    width: 80px;
+    height: 50px;
+    border-radius: 20px;
+    background-color: darkcyan;
+    border: none;
+    margin: 0 20px;
+}
+
+    button:hover {
+        background-color: cadetblue;
+    }
+
+    button a {
+        color: white;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        text-decoration: none;
+        font-size: 15px;
+    }
+
+.list_card {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.card {
+    height: 300px;
+    width: 200px;
+    overflow: hidden;
+    box-shadow: 7px 9px 21px 3px #888888;
+    border: none;
+    border-radius: 20px;
+    margin: 30px;
+    padding: 20px;
+}
+
+.card_GV, .card_LHP {
+    height: 590px;
+    width: 300px;
+    overflow: hidden;
+    box-shadow: 7px 9px 21px 3px #888888;
+    border: none;
+    border-radius: 20px;
+    margin: 30px;
+    padding: 20px;
+}
+
+    .card_GV p, .card_LHP p {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+        margin 0:
+    }
+
+
+.list_card img {
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+}
+
+.card_title {
+    text-align: center;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.card button {
+    margin: 20px 20px 20px 30px;
+    width: 70%;
+}
+
+.session_title {
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    font-size: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.session_header {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
 }
