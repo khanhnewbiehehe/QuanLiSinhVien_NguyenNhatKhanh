@@ -9,12 +9,26 @@ namespace QuanLiSinhVien.Controllers
     public class GiangvienController : Controller
     {
         // GET: GiangvienController
-        public ActionResult Index()
+        public ActionResult Index(string searchTerm)
         {
-            var listGV = new QlsinhvienContext()
+            var context = new QlsinhvienContext();
+            List<Giangvien> listGV;
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+                listGV = context
                     .Giangviens
-                    .Include(gv => gv.MaKhoaNavigation)  
+                    .Include(gv => gv.MaKhoaNavigation)
                     .ToList();
+            }
+            else
+            {
+                listGV = context
+                    .Giangviens
+                    .Where(gv => gv.TenGv.ToLower().Contains(searchTerm.ToLower()) ||
+                         gv.MaKhoaNavigation.TenKhoa.ToLower().Contains(searchTerm.ToLower()))
+                    .Include(gv => gv.MaKhoaNavigation)
+                    .ToList();
+            }
             return View(listGV);
         }
 
