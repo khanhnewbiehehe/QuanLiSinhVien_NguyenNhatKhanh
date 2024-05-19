@@ -102,10 +102,19 @@ namespace QuanLiSinhVien.Controllers
         // POST: SinhVienController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(Sinhvien model)
         {
             try
             {
+                var context = new QlsinhvienContext();
+                var sinhvienToDelete = context.Sinhviens.Find(model.MaSv);
+
+                if (sinhvienToDelete == null)
+                {
+                    return NotFound();
+                }
+                context.Sinhviens.Remove(sinhvienToDelete);
+                context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
