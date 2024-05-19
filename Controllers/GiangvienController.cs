@@ -9,11 +9,16 @@ namespace QuanLiSinhVien.Controllers
     public class GiangvienController : Controller
     {
         // GET: GiangvienController
-        public ActionResult Index(string searchTerm)
+        public ActionResult Index(string searchTerm, string selectedKhoa)
         {
             var context = new QlsinhvienContext();
             List<Giangvien> listGV;
-            if (string.IsNullOrEmpty(searchTerm))
+
+            // Lấy danh sách khoa để truyền vào View
+            var listKhoa = context.Khoas.ToList();
+            ViewBag.ListKhoa = new SelectList(listKhoa, "MaKhoa", "TenKhoa");
+
+            if (string.IsNullOrEmpty(searchTerm) && string.IsNullOrEmpty(selectedKhoa))
             {
                 listGV = context
                     .Giangviens
@@ -24,13 +29,14 @@ namespace QuanLiSinhVien.Controllers
             {
                 listGV = context
                     .Giangviens
-                    .Where(gv => gv.TenGv.ToLower().Contains(searchTerm.ToLower()) ||
-                         gv.MaKhoaNavigation.TenKhoa.ToLower().Contains(searchTerm.ToLower()))
                     .Include(gv => gv.MaKhoaNavigation)
+                    .Where(gv => (string.IsNullOrEmpty(searchTerm) || gv.TenGv.ToLower().Contains(searchTerm.ToLower())) &&
+                         (string.IsNullOrEmpty(selectedKhoa) || gv.MaKhoa == selectedKhoa))
                     .ToList();
             }
             return View(listGV);
         }
+
 
         // GET: GiangvienController/Details/5
         public ActionResult Details(int id)

@@ -132,6 +132,13 @@ button {
     display: flex;
     justify-content: center;
 }
+    .session_search select {
+        width: 150px;
+        height: 5vh;
+        border-radius: 20px;
+        margin-right: 20px;
+        border: 2px solid;
+    }
 
     .session_search input {
         width: 200px;
