@@ -10,9 +10,18 @@ namespace QuanLiSinhVien.Controllers
     public class SinhvienController : Controller
     {
         // GET: SinhVienController
-        public ActionResult Index()
+        public ActionResult Index(String searchTerm)
         {
-            var listSV = new QlsinhvienContext().Sinhviens.ToList();
+            var context = new QlsinhvienContext();
+            List<Sinhvien> listSV;
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+                listSV = context.Sinhviens.ToList();
+            }
+            else
+            {
+                listSV = context.Sinhviens.Where(sv => sv.MaSv.ToLower().Contains(searchTerm.ToLower()) || sv.TenSv.ToLower().Contains(searchTerm.ToLower())).ToList();
+            }
             return View(listSV);
         }
 
