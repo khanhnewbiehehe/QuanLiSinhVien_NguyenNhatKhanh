@@ -8,12 +8,25 @@ namespace QuanLiSinhVien.Controllers
     public class LshController : Controller
     {
         // GET: LshController
-        public ActionResult Index()
+        public ActionResult Index(String searchTerm)
         {
-            var listLsh = new QlsinhvienContext()
-                     .Lshes
-                     .Include(lsh => lsh.MaGvNavigation)
-                     .ToList();
+            var context = new QlsinhvienContext();
+            List<Lsh> listLsh;
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+                listLsh = context
+                    .Lshes
+                    .Include(lsh => lsh.MaGvNavigation)
+                    .ToList();
+            }
+            else
+            {
+                listLsh = context
+                    .Lshes
+                    .Where(lsh => lsh.MaLsh.ToLower().Contains(searchTerm.ToLower()))
+                    .Include(lsh => lsh.MaGvNavigation)
+                    .ToList();
+            }
             return View(listLsh);
         }
 

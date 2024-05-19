@@ -7,9 +7,18 @@ namespace QuanLiSinhVien.Controllers
     public class KhoaController : Controller
     {
         // GET: KhoaController
-        public ActionResult Index()
+        public ActionResult Index(string searchTerm)
         {
-            var listKhoa = new QlsinhvienContext().Khoas.ToList();
+            var context = new QlsinhvienContext();
+            List<Khoa> listKhoa;
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+                listKhoa = context.Khoas.ToList();
+            }
+            else
+            {
+                listKhoa = context.Khoas.Where(k => k.TenKhoa.ToLower().Contains(searchTerm.ToLower())).ToList();
+            }
             return View(listKhoa);
         }
 
