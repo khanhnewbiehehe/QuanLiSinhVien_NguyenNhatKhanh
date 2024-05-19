@@ -5,6 +5,12 @@
 }
 
 <p class="session_title">DANH SÁCH LỚP SINH HOẠT</p>
+<div class="session_search">
+    <form asp-action="Index" method="get">
+        <input type="search" name="searchTerm" value="@ViewContext.HttpContext.Request.Query["searchTerm"]" placeholder="Tìm kiếm theo tên khoa..." />
+        <button type="submit">Tìm kiếm</button>
+    </form>
+</div>
 <div class="session_header">
     <button><a asp-action="Create">Thêm</a></button>
     <button><a asp-action="Edit">Sửa</a></button>
