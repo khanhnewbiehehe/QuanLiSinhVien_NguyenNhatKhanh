@@ -9,7 +9,7 @@ namespace QuanLiSinhVien.Controllers
     public class GiangvienController : Controller
     {
         // GET: GiangvienController
-        public ActionResult Index(string searchTerm, string selectedKhoa)
+        public ActionResult Index(string searchTerm, string selectedKhoa, string selectedHocVi)
         {
             var context = new QlsinhvienContext();
             List<Giangvien> listGV;
@@ -33,7 +33,8 @@ namespace QuanLiSinhVien.Controllers
                     .Giangviens
                     .Include(gv => gv.MaKhoaNavigation)
                     .Where(gv => (string.IsNullOrEmpty(searchTerm) || gv.TenGv.ToLower().Contains(searchTerm.ToLower())) &&
-                         (string.IsNullOrEmpty(selectedKhoa) || gv.MaKhoa == selectedKhoa))
+                         (string.IsNullOrEmpty(selectedKhoa) || gv.MaKhoa == selectedKhoa) &&
+                         (string.IsNullOrEmpty(selectedHocVi) || gv.Hocvi == selectedHocVi))
                     .ToList();
             }
             return View(listGV);
