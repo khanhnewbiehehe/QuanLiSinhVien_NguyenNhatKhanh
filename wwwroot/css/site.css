@@ -125,3 +125,29 @@ button {
     display: flex;
     justify-content: center;
 }
+
+.session_search {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+}
+
+    .session_search input {
+        width: 200px;
+        height: 5vh;
+        border-radius: 20px;
+    }
+
+    .session_search button {
+        height: 5vh;
+        width: 120px;
+        border-radius: 20px;
+        background-color: darkcyan;
+        color: white;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+        .session_search button:hover {
+            background-color: cadetblue;
+        }
