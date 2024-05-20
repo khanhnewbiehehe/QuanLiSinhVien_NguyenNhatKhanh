@@ -7,6 +7,13 @@
 <p class="session_title">DANH SÁCH KHOA</p>
 <div class="session_search">
     <form asp-action="Index" method="get">
+        <select name="selectedMaKhoa">
+            <option value="">Chọn mã khoa:</option>
+            @foreach (var makhoa in (SelectList)ViewBag.ListMaKhoa)
+            {
+                <option value="@makhoa.Text">@makhoa.Text</option>
+            }
+        </select>
         <input type="search" name="searchTerm" value="@ViewContext.HttpContext.Request.Query["searchTerm"]" placeholder="Tìm kiếm theo tên khoa..." />
         <button type="submit">Tìm kiếm</button>
     </form>

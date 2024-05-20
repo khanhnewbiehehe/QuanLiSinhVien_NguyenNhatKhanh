@@ -7,6 +7,13 @@
 <p class="session_title">DANH SÁCH GIẢNG VIÊN</p>
 <div class="session_search">
     <form asp-action="Index" method="get">
+        <select name="selectedhocvi">
+            <option value="">Chọn học vị:</option>
+            @foreach (var hocvi in (SelectList)ViewBag.ListHocVi)
+            {
+                <option value="@hocvi.Text">@hocvi.Text</option>
+            }
+        </select>
         <select name="selectedKhoa">
             <option value="">Chọn khoa:</option>
             @foreach (var khoa in (SelectList)ViewBag.ListKhoa)
