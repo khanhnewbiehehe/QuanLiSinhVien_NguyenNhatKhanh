@@ -7,11 +7,11 @@
 <p class="session_title">DANH SÁCH LỚP SINH HOẠT</p>
 <div class="session_search">
     <form asp-action="Index" method="get">
-        <select name="selectednienkhoa">
-            <option value="">Chọn khóa:</option>
+        <select name="selectedNienKhoa">
+            <option value="">Chọn niên khóa:</option>
             @foreach (var nienkhoa in (SelectList)ViewBag.NienKhoaList)
             {
-                <option value="@nienkhoa.Value">@nienkhoa.Text</option>
+                <option value="@nienkhoa.Text">@nienkhoa.Text</option>
             }
         </select>
         <input type="search" name="searchTerm" value="@ViewContext.HttpContext.Request.Query["searchTerm"]" placeholder="Tìm kiếm theo mã lớp sinh hoạt..." />
