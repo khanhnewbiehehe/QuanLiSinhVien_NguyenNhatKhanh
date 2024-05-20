@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using QuanLiSinhVien.Models;
 
 namespace QuanLiSinhVien.Controllers
@@ -11,6 +12,9 @@ namespace QuanLiSinhVien.Controllers
         {
             var context = new QlsinhvienContext();
             List<Khoa> listKhoa;
+
+            ViewBag.ListMaKhoa = new SelectList(context.Khoas, "MaKhoa", "MaKhoa");
+
             if (string.IsNullOrEmpty(searchTerm))
             {
                 listKhoa = context.Khoas.ToList();
