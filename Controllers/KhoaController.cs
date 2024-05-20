@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using QuanLiSinhVien.Models;
 
 namespace QuanLiSinhVien.Controllers
@@ -7,17 +8,23 @@ namespace QuanLiSinhVien.Controllers
     public class KhoaController : Controller
     {
         // GET: KhoaController
-        public ActionResult Index(string searchTerm)
+        public ActionResult Index(string searchTerm , string selectedMaKhoa)
         {
             var context = new QlsinhvienContext();
             List<Khoa> listKhoa;
-            if (string.IsNullOrEmpty(searchTerm))
+
+            ViewBag.ListMaKhoa = new SelectList(context.Khoas, "MaKhoa", "MaKhoa");
+
+            if (string.IsNullOrEmpty(searchTerm) && string.IsNullOrEmpty(selectedMaKhoa))
             {
                 listKhoa = context.Khoas.ToList();
             }
             else
             {
-                listKhoa = context.Khoas.Where(k => k.TenKhoa.ToLower().Contains(searchTerm.ToLower())).ToList();
+                listKhoa = context.Khoas
+                    .Where(k => (string.IsNullOrEmpty(searchTerm) || k.TenKhoa.ToLower().Contains(searchTerm.ToLower()))&&
+                    (string.IsNullOrEmpty(selectedMaKhoa) || k.MaKhoa == selectedMaKhoa))
+                    .ToList();
             }
             return View(listKhoa);
         }
