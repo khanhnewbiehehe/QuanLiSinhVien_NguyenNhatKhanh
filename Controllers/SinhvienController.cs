@@ -14,6 +14,10 @@ namespace QuanLiSinhVien.Controllers
         {
             var context = new QlsinhvienContext();
             List<Sinhvien> listSV;
+
+            var listLsh = context.Lshes.ToList();
+            ViewBag.ListLsh = new SelectList(listLsh, "MaLsh", "MaLsh");
+
             if (string.IsNullOrEmpty(searchTerm))
             {
                 listSV = context.Sinhviens.ToList();
