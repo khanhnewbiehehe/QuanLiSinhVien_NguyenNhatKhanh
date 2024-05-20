@@ -12,6 +12,13 @@ namespace QuanLiSinhVien.Controllers
         {
             var context = new QlsinhvienContext();
             List<Lsh> listLsh;
+
+            var nienKhoaList = context.Lshes
+            .Select(lsh => lsh.MaLsh.Substring(0, 2))
+            .Distinct()
+            .ToList();
+
+            ViewBag.NienKhoaList = new SelectList(nienKhoaList);
             if (string.IsNullOrEmpty(searchTerm))
             {
                 listLsh = context
