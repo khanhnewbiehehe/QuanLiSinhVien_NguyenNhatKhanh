@@ -11,7 +11,7 @@
             <option value="">Chọn học vị:</option>
             @foreach (var hocvi in (SelectList)ViewBag.ListHocVi)
             {
-                <option value="@hocvi.Value">@hocvi.Text</option>
+                <option value="@hocvi.Text">@hocvi.Text</option>
             }
         </select>
         <select name="selectedKhoa">
