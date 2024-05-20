@@ -8,6 +8,13 @@
 <p class="session_title">DANH SÁCH SINH VIÊN</p>
 <div class="session_search">
     <form asp-action="Index" method="get">
+        <select name="selectedLsh">
+            <option value="">Chọn lớp sinh hoạt:</option>
+            @foreach (var lsh in (SelectList)ViewBag.ListLsh)
+            {
+                <option value="@lsh.Value">@lsh.Text</option>
+            }
+        </select>
         <input type="search" name="searchTerm" value="@ViewContext.HttpContext.Request.Query["searchTerm"]" placeholder="Tìm kiếm theo tên sinh viên, mã sinh viên..." />
         <button type="submit">Tìm kiếm</button>
     </form>
