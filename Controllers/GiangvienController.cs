@@ -14,9 +14,9 @@ namespace QuanLiSinhVien.Controllers
             var context = new QlsinhvienContext();
             List<Giangvien> listGV;
 
-            // Lấy danh sách khoa để truyền vào View
             var listKhoa = context.Khoas.ToList();
             ViewBag.ListKhoa = new SelectList(listKhoa, "MaKhoa", "TenKhoa");
+            
 
             if (string.IsNullOrEmpty(searchTerm) && string.IsNullOrEmpty(selectedKhoa))
             {

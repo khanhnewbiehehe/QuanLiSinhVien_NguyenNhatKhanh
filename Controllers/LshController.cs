@@ -8,11 +8,18 @@ namespace QuanLiSinhVien.Controllers
     public class LshController : Controller
     {
         // GET: LshController
-        public ActionResult Index(String searchTerm)
+        public ActionResult Index(string searchTerm, string selectedNienKhoa)
         {
             var context = new QlsinhvienContext();
             List<Lsh> listLsh;
-            if (string.IsNullOrEmpty(searchTerm))
+
+            var nienKhoaList = context.Lshes
+                .Select(lsh => lsh.MaLsh.Substring(0, 2))
+                .Distinct()
+                .ToList();
+            ViewBag.NienKhoaList = new SelectList(nienKhoaList);
+
+            if (string.IsNullOrEmpty(searchTerm) && string.IsNullOrEmpty(selectedNienKhoa))
             {
                 listLsh = context
                     .Lshes
@@ -23,12 +30,16 @@ namespace QuanLiSinhVien.Controllers
             {
                 listLsh = context
                     .Lshes
-                    .Where(lsh => lsh.MaLsh.ToLower().Contains(searchTerm.ToLower()))
+                    .Where(lsh => (string.IsNullOrEmpty(searchTerm) || lsh.MaLsh.ToLower().Contains(searchTerm.ToLower())) &&
+                                  (string.IsNullOrEmpty(selectedNienKhoa) || lsh.MaLsh.StartsWith(selectedNienKhoa)))
                     .Include(lsh => lsh.MaGvNavigation)
                     .ToList();
             }
+
             return View(listLsh);
         }
+
+
 
         // GET: LshController/Details/5
         public ActionResult Details(int id)
