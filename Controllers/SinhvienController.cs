@@ -24,7 +24,7 @@ namespace QuanLiSinhVien.Controllers
             else
             {
                 listSV = context.Sinhviens
-                .Where(sv => (string.IsNullOrEmpty(searchTerm) || sv.MaSv.ToLower() == searchTerm.ToLower())&&
+                .Where(sv => (string.IsNullOrEmpty(searchTerm) || sv.TenSv.ToLower().Contains(searchTerm.ToLower()) || sv.MaSv.ToLower().Contains(searchTerm.ToLower())) &&
                 (string.IsNullOrEmpty(selectedLsh) || sv.MaLsh == selectedLsh))    
                 .ToList();
 
