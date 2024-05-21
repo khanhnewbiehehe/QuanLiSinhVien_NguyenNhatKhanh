@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    bool isLoggedIn = ViewContext.HttpContext.Session.GetString("User") != null;
 }
 
 <p class="session_title">DANH SÁCH LỚP SINH HOẠT</p>
@@ -18,11 +19,14 @@
         <button type="submit">Tìm kiếm</button>
     </form>
 </div>
-<div class="session_header">
-    <button><a asp-action="Create">Thêm</a></button>
-    <button><a asp-action="Edit">Sửa</a></button>
-    <button><a asp-action="Delete">Xóa</a></button>
-</div>
+@if (isLoggedIn)
+{
+    <div class="session_header">
+        <button><a asp-action="Create">Thêm</a></button>
+        <button><a asp-action="Edit">Sửa</a></button>
+        <button><a asp-action="Delete">Xóa</a></button>
+    </div>
+}
 <div class="list_card">
     @foreach (var item in Model)
     {
