@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using QuanLiSinhVien.Models;
 
 namespace QuanLiSinhVien.Controllers
 {
@@ -26,16 +27,31 @@ namespace QuanLiSinhVien.Controllers
         // POST: LoginController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult login(IFormCollection collection)
+        public ActionResult Login(LoginViewModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                // Kiểm tra tài khoản và mật khẩu
+                if (model.TaiKhoan == "admin" && model.MatKhau == "123")
+                {
+                    // Lưu thông tin đăng nhập vào session
+                    HttpContext.Session.SetString("User", model.TaiKhoan);
+
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Tên đăng nhập hoặc mật khẩu không đúng");
+                }
             }
-            catch
-            {
-                return View();
-            }
+            return View(model);
+        }
+
+        // Đăng xuất
+        public ActionResult Logout()
+        {
+            HttpContext.Session.Remove("User");
+            return RedirectToAction("Login");
         }
 
         // GET: LoginController/Edit/5
