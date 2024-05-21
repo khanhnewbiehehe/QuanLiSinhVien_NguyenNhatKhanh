@@ -158,3 +158,42 @@ button {
         .session_search button:hover {
             background-color: cadetblue;
         }
+
+#login_page {
+    display: flex;
+    height:100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(78, 110, 110);
+}
+
+#login_session {
+    width: 30%;
+    height: 50%;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 7px 9px 21px 3px #888888;
+    justify-content: center;
+    padding: 50px;
+}
+
+    #login_session input {
+        height: 5vh;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        
+    }
+
+    #login_session label {
+        margin-bottom: 10px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+    }
+
+    #login_session button {
+        width: 100%;
+        margin: 0;
+        color: white;
+    }
