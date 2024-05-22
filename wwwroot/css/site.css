@@ -74,7 +74,7 @@ button {
 
 
     .card_GV, .card_LHP {
-        height: 590px;
+        
         width: 300px;
         overflow: hidden;
         box-shadow: 7px 9px 21px 3px #888888;
@@ -169,7 +169,7 @@ button {
 
 #login_session {
     width: 30%;
-    height: 50%;
+    height: 70%;
     background-color: white;
     border-radius: 20px;
     display: flex;

@@ -31,18 +31,35 @@ namespace QuanLiSinhVien.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Kiểm tra tài khoản và mật khẩu
-                if (model.TaiKhoan == "admin" && model.MatKhau == "123")
+                if (model.Role == "Admin" && model.TaiKhoan == "admin" && model.MatKhau == "123")
                 {
                     // Lưu thông tin đăng nhập vào session
                     HttpContext.Session.SetString("User", model.TaiKhoan);
+                    HttpContext.Session.SetString("Role", "Admin");
 
                     return RedirectToAction("Index", "Home");
                 }
-                else
+                else if (model.Role == "Giangvien")
                 {
-                    ModelState.AddModelError("", "Tên đăng nhập hoặc mật khẩu không đúng");
+                    if (ValidateGiangvien(model.TaiKhoan, model.MatKhau))
+                    {
+                        HttpContext.Session.SetString("User", model.TaiKhoan);
+                        HttpContext.Session.SetString("Role", "Giangvien");
+
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
+                else if (model.Role == "Sinhvien")
+                {
+                    if (ValidateSinhvien(model.TaiKhoan, model.MatKhau))
+                    {
+                        HttpContext.Session.SetString("User", model.TaiKhoan);
+                        HttpContext.Session.SetString("Role", "Sinhvien");
+
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                ModelState.AddModelError("", "Tên đăng nhập hoặc mật khẩu không đúng");
             }
             return View(model);
         }
@@ -50,8 +67,22 @@ namespace QuanLiSinhVien.Controllers
         // Đăng xuất
         public ActionResult Logout()
         {
-            HttpContext.Session.Remove("User");
+            HttpContext.Session.Clear();
             return RedirectToAction("Login");
+        }
+
+        private bool ValidateGiangvien(string maGv, string sdt)
+        {
+            var context = new QlsinhvienContext();
+            var giangvien = context.Giangviens.FirstOrDefault(gv => gv.MaGv == maGv && gv.Sdt == sdt);
+            return giangvien != null;
+        }
+
+        private bool ValidateSinhvien(string maSv, string sdt)
+        {
+            var context = new QlsinhvienContext();
+            var sinhvien = context.Sinhviens.FirstOrDefault(sv => sv.MaSv == maSv && sv.Sdt == sdt);
+            return sinhvien != null;
         }
 
         // GET: LoginController/Edit/5

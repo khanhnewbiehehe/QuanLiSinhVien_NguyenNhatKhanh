@@ -2,7 +2,8 @@
 
 @{
     ViewData["Title"] = "Index";
-    bool isLoggedIn = ViewContext.HttpContext.Session.GetString("User") != null;
+    string userRole = ViewContext.HttpContext.Session.GetString("Role");
+    bool isAdmin = userRole == "Admin";
 }
 
 <p class="session_title">DANH SÁCH KHOA</p>
@@ -19,7 +20,7 @@
         <button type="submit">Tìm kiếm</button>
     </form>
 </div>
-@if (isLoggedIn)
+@if (isAdmin)
 {
     <div class="session_header">
         <button><a asp-action="Create">Thêm</a></button>
