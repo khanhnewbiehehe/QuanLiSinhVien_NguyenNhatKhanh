@@ -1,20 +1,20 @@
 # WEBSITE QUẢN LÍ SINH VIÊN
 
-## Giới thiệu:
+## Giới thiệu
 - Trang web cơ bản để quản lí thông tin sinh viên, giảng viên, lớp học phần, khoa.
 
-## Chức năng:
+## Chức năng
 - Xem danh sách các đối tượng.
 - Thêm, sửa, xóa các đối tượng.
 - Tìm kiếm và lọc các đối tượng.
 - Đăng nhập cho admin, giảng viên, sinh viên
 
-## Yêu cầu hệ thống:
+## Yêu cầu hệ thống
 - SQL Sever 2019
 - Visual Studio 2022
 - Git version 2.41.0.windows.2
 
-## Hướng dẫn cài đặt:
+## Hướng dẫn cài đặt
 1. SQL Sever:
 - Cài đặt SQL Sever 2019 hoặc mới hơn.
 - Mở file QLSinhVien1.sql bằng MS Sql Sever Management Studio.
