@@ -2,7 +2,9 @@
 
 @{
     ViewData["Title"] = "Index";
-    bool isLoggedIn = ViewContext.HttpContext.Session.GetString("User") != null;
+    string userRole = ViewContext.HttpContext.Session.GetString("Role");
+    bool isAdmin = userRole == "Admin";
+    bool isGiangvien = userRole == "Giangvien";
 }
 
 <p class="session_title">DANH SÁCH GIẢNG VIÊN</p>
@@ -26,12 +28,18 @@
         <button type="submit">Tìm kiếm</button>
     </form>
 </div>
-@if (isLoggedIn)
+@if (isAdmin)
 {
     <div class="session_header">
         <button><a asp-action="Create">Thêm</a></button>
         <button><a asp-action="Edit">Sửa</a></button>
         <button><a asp-action="Delete">Xóa</a></button>
+    </div>
+}
+@if (isGiangvien)
+{
+    <div class="session_header">
+        <button><a asp-action="Edit">Sửa</a></button>
     </div>
 }
 <div class="list_card">
@@ -48,5 +56,5 @@
             <p class="">Học vị: @Html.DisplayFor(modelItem => item.Hocvi)</p>
             <p class="">Khoa: @Html.DisplayFor(modelItem => item.MaKhoaNavigation.TenKhoa)</p>
         </div>
-    }  
+    }
 </div>
