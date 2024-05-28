@@ -1,4 +1,5 @@
 # WEBSITE QUẢN LÍ SINH VIÊN
+Nguyễn Nhật Khánh_22115053122222_223LTC01
 
 ## Giới thiệu
 - Trang web cơ bản để quản lí thông tin sinh viên, giảng viên, lớp học phần, khoa.
